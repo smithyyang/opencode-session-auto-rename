@@ -83,7 +83,7 @@ export const sessionAutoRename: Plugin = async (ctx) => {
       } else if (output.message?.summary?.body) {
         text = output.message.summary.body
       } else {
-        const part = output.parts?.find((p: any) => p.type === "text")
+        const part = output.parts?.find((p: any) => p.type === "text") as any
         if (part?.text) text = part.text
       }
       if (!text || text.length < 5) return
@@ -103,7 +103,7 @@ export const sessionAutoRename: Plugin = async (ctx) => {
             if (userModel) promptBody.model = userModel
 
             const resp = await ctx.client.session.prompt({ path: { id: tsId }, body: promptBody })
-            const tp = resp.data?.parts?.find((p: any) => p.type === "text")
+            const tp = resp.data?.parts?.find((p: any) => p.type === "text") as any
             if (tp?.text) title = tp.text.trim().slice(0, maxLen)
           } finally {
             await ctx.client.session.delete({ path: { id: tsId } }).catch(() => {})

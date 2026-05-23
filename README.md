@@ -1,19 +1,10 @@
 # opencode-session-auto-rename
 
-Auto-rename your OpenCode sessions with AI-generated titles after a configurable number of messages.
+Auto-rename OpenCode sessions with AI-generated titles after every N messages. Works out of the box with zero config.
 
 ## Install
 
-### Local plugin (recommended)
-
-Copy or symlink `src/index.ts` to `~/.config/opencode/plugins/session-auto-rename.ts`
-
-```bash
-mkdir -p ~/.config/opencode/plugins
-cp src/index.ts ~/.config/opencode/plugins/session-auto-rename.ts
-```
-
-### npm
+Add to `opencode.json`:
 
 ```json
 {
@@ -21,13 +12,14 @@ cp src/index.ts ~/.config/opencode/plugins/session-auto-rename.ts
 }
 ```
 
-## Configuration
+Restart OpenCode. Done.
 
-Create `~/.config/opencode/session-auto-rename.jsonc`:
+## Configuration (optional)
+
+The plugin works with sensible defaults. To customize, create `~/.config/opencode/session-auto-rename.jsonc`:
 
 ```jsonc
 {
-  "$schema": "https://raw.githubusercontent.com/smithyyang/opencode-session-auto-rename/main/config.schema.json",
   "interval": 5,
   "titleMaxLength": 25,
   "dateFormat": "YY-MM-DD",
@@ -38,15 +30,15 @@ Create `~/.config/opencode/session-auto-rename.jsonc`:
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `interval` | `10` | Rename every N messages |
+| `interval` | `10` | Rename every N AI responses |
 | `titleMaxLength` | `30` | Max title characters |
-| `dateFormat` | `YY-MM-DD` | Timestamp suffix format |
-| `model` | `opencode/grok-code` | AI model for title generation |
+| `dateFormat` | `YY-MM-DD` | Timestamp suffix (YYYY/YY/MM/DD/HH/mm) |
+| `model` | `opencode/grok-code` | Model for title generation |
 | `debug` | `false` | Enable debug logs |
 
 ## How it works
 
-Hooks into `chat.message` event. After every N AI responses, generates a new session title from the conversation summary and updates it via `client.session.update()`.
+Hooks into `chat.message`. After every N AI responses, generates a descriptive title from the conversation summary and updates the session. Title format: `{title}({date})`.
 
 ## License
 

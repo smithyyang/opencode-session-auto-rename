@@ -3,12 +3,27 @@
   "version": "1.0.0",
   "description": "Auto-rename opencode sessions after N messages with AI-generated titles",
   "type": "module",
-  "main": "src/index.ts",
-  "files": ["src/"],
-  "keywords": ["opencode", "plugin", "session", "rename"],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "keywords": ["opencode", "plugin", "session", "rename", "auto-rename"],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/smithyyang/opencode-session-auto-rename.git"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target bun && tsc --emitDeclarationOnly --declaration --outDir dist",
+    "prepublishOnly": "bun run build"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "latest"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": "*"
   }
 }
