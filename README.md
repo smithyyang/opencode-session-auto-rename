@@ -1,6 +1,6 @@
 # opencode-session-auto-rename
 
-[中文](./README.zh.md)
+[中文 README](./README.zh.md)
 
 Auto-rename OpenCode sessions with AI-generated titles after every N messages. Works out of the box with zero config.
 
