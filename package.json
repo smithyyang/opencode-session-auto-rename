@@ -1,0 +1,14 @@
+{
+  "name": "opencode-session-auto-rename",
+  "version": "1.0.0",
+  "description": "Auto-rename opencode sessions after N messages with AI-generated titles",
+  "type": "module",
+  "main": "src/index.ts",
+  "files": ["src/"],
+  "keywords": ["opencode", "plugin", "session", "rename"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smithyyang/opencode-session-auto-rename.git"
+  }
+}
